@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block title %}Administração de Produtos{% endblock %}
+
+{% block content %}
+    <header class="bg-dark py-5">
+        <div class="container px-4 px-lg-5 my-5">
+            <div class="text-center text-white">
+                <h1 class="display-4 fw-bolder">Administração de Produtos</h1>
+                <p class="lead fw-normal text-white-50 mb-0">Gerencie os produtos da loja</p>
+            </div>
+        </div>
+    </header>
+
+    <section class="py-5">
+        <div class="container px-4 px-lg-5">
+            <h2>Produtos</h2>
+            <a class="btn btn-primary mb-3" href="{{ url_for('add_product') }}">Adicionar Produto</a>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Categoria</th>
+                    <th>Preço</th>
+                    <th>Quantidade</th>
+                    <th>Disponível</th>
+                    <th>Ações</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for product in products %}
+                    <tr>
+                        <td>{{ product.name }}</td>
+                        <td>{{ product.category }}</td>
+                        <td>R$ {{ "%.2f"|format(product.price) }}</td>
+                        <td>{{ product.quantity }}</td>
+                        <td>{{ 'Sim' if product.available else 'Não' }}</td>
+                        <td>
+                            <a class="btn btn-sm btn-warning"
+                               href="{{ url_for('edit_product', product_id=product.id) }}">Editar</a>
+                            <a class="btn btn-sm btn-danger"
+                               href="{{ url_for('delete_product', product_id=product.id) }}">Excluir</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </section>
+{% endblock %}

@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block title %}Carrinho{% endblock %}
+
+{% block content %}
+    <header class="bg-dark py-5">
+        <div class="container px-4 px-lg-5 my-5">
+            <div class="text-center text-white">
+                <h1 class="display-4 fw-bolder">Seu Carrinho</h1>
+                <p class="lead fw-normal text-white-50 mb-0">Revise seus itens antes de finalizar a compra</p>
+            </div>
+        </div>
+    </header>
+
+    <section class="py-5">
+        <div class="container px-4 px-lg-5">
+            {% if cart %}
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Produto</th>
+                        <th>Preço Unitário</th>
+                        <th>Quantidade</th>
+                        <th>Total</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for product_id, item in cart.items() %}
+                        <tr>
+                            <td>{{ item['name'] }}</td>
+                            <td>R$ {{ "%.2f"|format(item['price']) }}</td>
+                            <td>{{ item['quantity'] }}</td>
+                            <td>R$ {{ "%.2f"|format(item['price'] * item['quantity']) }}</td>
+                        </tr>
+                    {% endfor %}
+                    <tr>
+                        <td colspan="3" class="text-end"><strong>Total:</strong></td>
+                        <td><strong>R$ {{ "%.2f"|format(total) }}</strong></td>
+                    </tr>
+                    </tbody>
+                </table>
+                <form action="{{ url_for('place_order') }}" method="POST">
+                    <!-- Detalhes do formulário para checkout -->
+                    <button type="submit">Finalizar Pedido</button>
+                </form>
+            {% else %}
+                <p class="text-center">Seu carrinho está vazio.</p>
+                <div class="text-center">
+                    <a class="btn btn-primary" href="{{ url_for('index') }}">Voltar às Compras</a>
+                </div>
+            {% endif %}
+        </div>
+    </section>
+{% endblock %}

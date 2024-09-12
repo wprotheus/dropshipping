@@ -1,0 +1,60 @@
+.form-auth {
+    padding: 20px 0;
+}
+
+.text-logo {
+    color: rgb(15, 50, 124);
+    font-weight: 800;
+    text-align: center;
+}
+
+.container-form {
+    margin: 1em auto;
+    background-color: rgba(111, 189, 145, 0.8); /* Fundo translúcido */
+    border: 3px solid #0f327c;
+    padding: 44px;
+    border-radius: 17px;
+}
+.usuarios {
+    width: 62%;
+}
+.form-control {
+    background-color: ivory;
+    font-size: 18px;
+    color: darkblue;
+    border: 1px solid #0a53be;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    margin-top: 10px;
+}
+
+.table-primary {
+    font-weight: 800;
+    text-align: center;
+}
+
+.btn-primary {
+    background-color: rgb(15, 50, 124);
+    border-color: rgb(15, 50, 124);
+    font-size: 18px;
+    font-weight: bold;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.btn-primary:hover {
+    background-color: darkblue;
+    border-color: darkblue;
+}
+
+.texto {
+    text-align: center;
+    color: darkblue;
+}
+
+.cadastros {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

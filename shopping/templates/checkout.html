@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}Checkout{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h1>Checkout</h1>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Produto</th>
+                <th>Quantidade</th>
+                <th>Preço Unitário</th>
+                <th>Total</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for product_id, item in cart.items() %}
+                <tr>
+                    <td>{{ item['name'] }}</td>
+                    <td>{{ item['quantity'] }}</td>
+                    <td>R$ {{ "%.2f"|format(item['price']) }}</td>
+                    <td>R$ {{ "%.2f"|format(item['price'] * item['quantity']) }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <!-- Aqui está o total, já com a variável total_price -->
+        <h3>Total: R$ {{ "%.2f"|format(total_price) }}</h3>
+
+        <form action="{{ url_for('place_order') }}" method="POST">
+            <button type="submit" class="btn btn-success">Finalizar Pedido</button>
+        </form>
+    </div>
+{% endblock %}
