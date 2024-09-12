@@ -7,8 +7,12 @@ from shopping.models import Product
 
 @app.route('/')
 def index():
-    products = Product.query.filter_by(available=True).all()
-    return render_template('index.html', products=products)
+   # products = Product.query.filter_by(available=True).all()
+   # return render_template('index.html', products=products)
+   products = Product.query.all()
+   cart = session.get('cart', {})
+   total_items = sum(item['quantity'] for item in cart.values())
+   return render_template('index.html', products=products, total_items=total_items)
 
 
 @app.route('/product/<int:product_id>')

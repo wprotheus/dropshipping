@@ -12,7 +12,7 @@
     <link href="{{ url_for('static', filename='css/base.css') }}" rel="stylesheet">
     <link href="{{ url_for('static', filename='css/cadastros.css') }}" rel="stylesheet">
 </head>
-<body class="p-3 m-0 border-0 bd-example m-0 border-0">
+<body class="p-1 m-0 border-0 bd-example m-0 border-0">
 <!-- Navigation-->
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container px-4 px-lg-5">
@@ -29,9 +29,11 @@
                     <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button"
                        data-bs-toggle="dropdown" aria-expanded="false">Comprar</a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="#">Balas</a></li>
-                        <li><a class="dropdown-item" href="#">Bolachas</a></li>
-                        <li><a class="dropdown-item" href="#">Chocolates</a></li>
+                         {% for product in session.get('products', []) %}
+                            <li><a class="dropdown-item"
+                                   href="{{ url_for('product_detail', product_id=product['id']) }}">{{ product['nome'] }}</a>
+                            </li>
+                        {% endfor %}
                     </ul>
                 </li>
             </ul>
@@ -51,7 +53,7 @@
 {% block content %}{% endblock %}
 
 <!-- Footer-->
-<footer class="py-5 bg-dark">
+<footer class="py-3 bg-dark">
     <div class="container"><p class="m-0 text-center text-white">Olimpus &copy; - <b><span id="ano"></span></b> -
         Palmas-TO</p>
 

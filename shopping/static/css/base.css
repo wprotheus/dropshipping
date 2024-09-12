@@ -12,6 +12,14 @@ body {
     height: 100vh;
 }
 
+.card {
+    margin: 1em auto;
+    background-color: rgba(255, 255, 255, 0); /* Fundo translúcido */
+    border: 3px solid #0f327c;
+    padding: 44px;
+    border-radius: 8px;
+}
+
 .container-fluid {
     flex: 1;
 }
