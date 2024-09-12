@@ -3,22 +3,27 @@
 {% block title %}Pagamento{% endblock %}
 
 {% block content %}
-    <header class="bg-dark py-5">
+    <header class="bg-secondary py-3">
         <div class="container px-4 px-lg-5 my-5">
             <div class="text-center text-white">
-                <h1 class="display-4 fw-bolder">Seu Carrinho</h1>
-                <p class="lead fw-normal text-white-50 mb-0">Revise seus itens antes de finalizar a compra</p>
+                <h2 class="fw-bolder">Finalizar Compra</h2>
+                <p>Para concluir a compra, realize o pagamento via PIX para o número <strong>(63 981077019)</strong>.
+                </p>
+                <p>Após a confirmação do pagamento, você será desconectado do sistema por segurança.</p>
+                <p>Revise seus itens antes de finalizar a compra</p>
             </div>
         </div>
     </header>
-
-    <section>
-        <h1>Pagar com PIX</h1>
-        <p>Total a pagar: R$ {{ total_price }}</p>
-
-        <form action="{{ url_for('confirm_payment') }}" method="POST">
-            <button type="submit">Confirmar Pagamento via PIX</button>
-        </form>
-
+    <section class="py-5">
+        <div class="container px-4 px-lg-5 my-5">
+            <hr>
+            <h1>Pagar com PIX</h1>
+            <hr>
+            <p>Total a pagar: R$ {{ total_price }}</p>
+            <hr>
+            <form action="{{ url_for('confirm_payment') }}" method="POST">
+                <button class="btn btn-primary" type="submit">Confirmar Pagamento via PIX</button>
+            </form>
+        </div>
     </section>
 {% endblock %}

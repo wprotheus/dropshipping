@@ -7,12 +7,18 @@ from shopping.models import Product
 
 @app.route('/')
 def index():
-   # products = Product.query.filter_by(available=True).all()
-   # return render_template('index.html', products=products)
-   products = Product.query.all()
-   cart = session.get('cart', {})
-   total_items = sum(item['quantity'] for item in cart.values())
-   return render_template('index.html', products=products, total_items=total_items)
+    products = Product.query.all()  # Pega todos os produtos
+    session['products'] = [{'id': product.id, 'name': product.name} for product in
+                           products]  # Armazena os produtos na sessão
+    cart = session.get('cart', {})
+    total_items = sum(item['quantity'] for item in cart.values())
+    return render_template('index.html', products=products, total_items=total_items)
+
+
+@app.context_processor
+def inject_products():
+    products = Product.query.all()
+    return {'products': products}
 
 
 @app.route('/product/<int:product_id>')
